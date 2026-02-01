@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hôm Nay Ăn Gì?</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Toggle History Button -->
+    <button id="toggle-history-btn" class="toggle-history-btn" title="Lịch sử">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+    </button>
+
+    <div class="container glass">
+        <header>
+            <div class="header-content">
+                <h1>Hôm Nay Ăn Gì?</h1>
+                <p class="subtitle">Trợ lý chọn món thông minh</p>
+            </div>
+            <div id="clock" class="clock">00:00:00</div>
+            <div id="session-info" class="session-badge"> <i class="fa-solid fa-spinner fa-spin"></i> Đang tải...</div>
+        </header>
+
+        <main>
+            <div class="controls">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="include-drink">
+                    <span class="checkmark"></span>
+                    <i class="fa-solid fa-mug-hot checkbox-icon"></i> Kèm nước uống
+                </label>
+            </div>
+
+            <div class="result-area">
+                <!-- Food Card -->
+                <div class="flip-card-container" id="food-card-container">
+                    <div class="flip-card">
+                        <div class="flip-card-front">
+                            <div class="icon-wrapper">
+                                <i class="fa-solid fa-utensils"></i>
+                            </div>
+                            <h3>Món Ăn</h3>
+                            <p>Nhấn để chọn...</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="icon-wrapper result-icon">
+                                <i class="fa-solid fa-bowl-food"></i>
+                            </div>
+                            <h2 id="food-result">---</h2>
+                            <p>Chúc ngon miệng!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drink Card -->
+                <div class="flip-card-container hidden" id="drink-card-container">
+                    <div class="flip-card">
+                        <div class="flip-card-front">
+                            <div class="icon-wrapper">
+                                <i class="fa-solid fa-glass-water"></i>
+                            </div>
+                            <h3>Nước Uống</h3>
+                            <p>???</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="icon-wrapper result-icon">
+                                <i class="fa-solid fa-martini-glass-citrus"></i>
+                            </div>
+                            <h2 id="drink-result">---</h2>
+                            <p>Giải khát</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button id="pick-btn" class="action-btn">
+                <i class="fa-solid fa-shuffle"></i> Gợi Ý Món Ăn
+            </button>
+        </main>
+    </div>
+
+    <!-- History Sidebar -->
+    <div class="history-sidebar" id="history-sidebar">
+        <div class="history-header">
+            <h3 class="history-title"><i class="fa-solid fa-clock-rotate-left"></i> Lịch Sử</h3>
+            <button id="clear-history-btn" class="clear-history-btn" title="Xóa lịch sử">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+        </div>
+        <div id="history-list" class="history-list">
+            <p class="history-empty">Chưa có lịch sử</p>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="confirm-modal">
+        <div class="confirm-modal-content">
+            <div class="confirm-modal-icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="confirm-modal-title">Xác nhận xóa</h3>
+            <p class="confirm-modal-message">Bạn có chắc muốn xóa toàn bộ lịch sử?</p>
+            <div class="confirm-modal-actions">
+                <button id="confirm-cancel" class="confirm-btn confirm-btn-cancel">Hủy</button>
+                <button id="confirm-ok" class="confirm-btn confirm-btn-ok">Xóa</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti Library (via CDN or simple local script if preferred, but manual impl is lighter) -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
